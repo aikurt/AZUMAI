@@ -16,7 +16,9 @@
                         primary: "#3B82F6",
                         secondary: "#10B981",
                         dark: "#1F2937",
-                        light: "#F9FAFB"
+                        light: "#F9FAFB",
+                        fund: "#0056A4",
+                        platform: "#FF6B35"
                     },
                     animation: {
                         'fade-in': 'fadeIn 1s ease-in-out',
@@ -45,18 +47,46 @@
             opacity: 1;
             transform: translateY(0);
         }
+        .fund-logo {
+            background: linear-gradient(135deg, #0056A4 0%, #003366 100%);
+        }
+        .platform-logo {
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+        }
     </style>
 </head>
 <body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Fund Support Banner -->
+    <div class="bg-gradient-to-r from-fund to-platform text-white py-3 px-4">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-center">
+            <div class="flex items-center mb-2 md:mb-0 md:mr-6">
+                <div class="fund-logo w-8 h-8 rounded-full flex items-center justify-center mr-2">
+                    <i class="fas fa-handshake text-white"></i>
+                </div>
+                <div class="platform-logo w-8 h-8 rounded-full flex items-center justify-center mr-2">
+                    <i class="fas fa-university text-white"></i>
+                </div>
+                <span class="text-sm font-bold">Проект реализован при поддержке</span>
+            </div>
+            <div class="text-center md:text-left">
+                <span class="text-sm">Фонда содействия инновациям в рамках программы «Студенческий стартап» мероприятия «Платформа университетского технологического предпринимательства» федерального проекта «Технологии»</span>
+            </div>
+        </div>
+    </div>
+
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold text-primary">
-                    Smart Keyboard AI
+                <div class="flex items-center">
+                    <div class="text-2xl font-bold text-primary mr-2">
+                        Smart Keyboard AI
+                    </div>
+                    <span class="bg-primary text-white text-xs px-2 py-1 rounded-full">Новинка</span>
                 </div>
                 <div class="hidden md:flex space-x-8">
+                    <a href="#product" class="hover:text-secondary transition">О продукте</a>
                     <a href="#features" class="hover:text-secondary transition">Возможности</a>
-                    <a href="#how-it-works" class="hover:text-secondary transition">Как работает</a>
+                    <a href="#technology" class="hover:text-secondary transition">Технология</a>
                     <a href="#testimonials" class="hover:text-secondary transition">Отзывы</a>
                     <a href="#contact" class="hover:text-secondary transition">Контакты</a>
                 </div>
@@ -72,6 +102,10 @@
         <section class="py-16 md:py-24 bg-gradient-to-r from-blue-50 to-green-50">
             <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0 animate-on-scroll" data-animate="slide-up">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-primary text-white text-sm px-3 py-1 rounded-full mr-3">НОВИНКА</span>
+                        <span class="text-sm text-gray-600">Технология 2024 года</span>
+                    </div>
                     <h1 class="text-4xl md:text-5xl font-bold text-dark mb-4">Smart Keyboard AI</h1>
                     <h2 class="text-xl md:text-2xl text-gray-600 mb-6">Умная клавиатура для бизнеса и жизни</h2>
                     <p class="text-lg mb-8">Автоматизируйте ответы. Экономьте время. Общайтесь эффективно.</p>
@@ -95,60 +129,125 @@
             </div>
         </section>
 
-        <!-- About Section -->
-        <section class="py-16 bg-white">
+        <!-- Product Information -->
+        <section id="product" class="py-16 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12 animate-on-scroll">
-                    <h2 class="text-3xl font-bold text-dark mb-4">Что такое Smart Keyboard AI?</h2>
+                    <h2 class="text-3xl font-bold text-dark mb-4">Новая технология автоматизации переписки</h2>
                     <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                        Smart Keyboard AI — это умная клавиатура для Android, которая помогает отвечать клиентам в мессенджерах быстрее, точнее и в нужном стиле.
-                        Идеальное решение для самозанятых, малого и среднего бизнеса, а также всех, кто устал печатать одно и то же вручную.
+                        Smart Keyboard AI — это революционная технология, которая впервые объединяет возможности искусственного интеллекта с мобильной клавиатурой для Android. Наша технология позволяет автоматизировать рутинные ответы в мессенджерах без необходимости подключения к интернету.
                     </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="animate-on-scroll">
+                        <div class="bg-gray-50 p-6 rounded-xl">
+                            <h3 class="text-xl font-bold mb-4 text-primary">Что это?</h3>
+                            <p class="text-gray-600 mb-4">
+                                Smart Keyboard AI — это умная клавиатура для Android, которая помогает отвечать клиентам в мессенджерах быстрее, точнее и в нужном стиле.
+                            </p>
+                            <p class="text-gray-600">
+                                Идеальное решение для самозанятых, малого и среднего бизнеса, а также всех, кто устал печатать одно и то же вручную.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="animate-on-scroll">
+                        <div class="bg-gray-50 p-6 rounded-xl">
+                            <h3 class="text-xl font-bold mb-4 text-primary">Ключевые преимущества</h3>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Работает без интернета</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Не передаёт данные на сервер</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Интегрируется в любые мессенджеры</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Экономит до 70% времени на переписке</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Section -->
+        <section id="technology" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-dark mb-12 animate-on-scroll">Технология</h2>
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white p-8 rounded-xl shadow-sm mb-8 animate-on-scroll">
+                        <h3 class="text-2xl font-bold mb-6 text-primary">Как работает наша технология?</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Локальный ИИ</h4>
+                                    <p class="text-gray-600">Мы используем оптимизированные модели машинного обучения, которые работают непосредственно на вашем устройстве.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Полная приватность</h4>
+                                    <p class="text-gray-600">Все данные обрабатываются локально. Ваши сообщения никогда не покидают ваше устройство.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Мгновенный отклик</h4>
+                                    <p class="text-gray-600">Благодаря оптимизации для мобильных устройств, ответы генерируются мгновенно.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Features Section -->
-        <section id="features" class="py-16 bg-gray-50">
+        <section id="features" class="py-16 bg-white">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl font-bold text-center text-dark mb-12 animate-on-scroll">Возможности</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition animate-on-scroll">
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition animate-on-scroll border border-gray-100">
                         <div class="text-primary text-3xl mb-4">
                             <i class="fas fa-comment-alt"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Генерация ответов</h3>
                         <p class="text-gray-600">Автоматическое создание ответов на сообщения по шаблонам</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition animate-on-scroll">
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition animate-on-scroll border border-gray-100">
                         <div class="text-primary text-3xl mb-4">
                             <i class="fas fa-paint-brush"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Стиль общения</h3>
                         <p class="text-gray-600">Выбор стиля общения (деловой, дружелюбный и т.п.)</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition animate-on-scroll">
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition animate-on-scroll border border-gray-100">
                         <div class="text-primary text-3xl mb-4">
                             <i class="fas fa-cloud-slash"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Работа офлайн</h3>
                         <p class="text-gray-600">Без передачи данных на сервер</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition animate-on-scroll">
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition animate-on-scroll border border-gray-100">
                         <div class="text-primary text-3xl mb-4">
                             <i class="fas fa-bolt"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Высокая скорость</h3>
                         <p class="text-gray-600">Мгновенный отклик без задержек</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition animate-on-scroll">
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition animate-on-scroll border border-gray-100">
                         <div class="text-primary text-3xl mb-4">
                             <i class="fas fa-clock"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Экономия времени</h3>
                         <p class="text-gray-600">Снижение цифровой усталости</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition animate-on-scroll">
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition animate-on-scroll border border-gray-100">
                         <div class="text-primary text-3xl mb-4">
                             <i class="fas fa-shield-alt"></i>
                         </div>
@@ -160,7 +259,7 @@
         </section>
 
         <!-- Target Users -->
-        <section class="py-16 bg-white">
+        <section class="py-16 bg-gray-50">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl font-bold text-center text-dark mb-12 animate-on-scroll">Кому подходит?</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -197,7 +296,7 @@
         </section>
 
         <!-- How It Works -->
-        <section id="how-it-works" class="py-16 bg-gray-50">
+        <section class="py-16 bg-white">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl font-bold text-center text-dark mb-12 animate-on-scroll">Как работает?</h2>
                 <div class="max-w-4xl mx-auto">
@@ -242,7 +341,7 @@
         </section>
 
         <!-- Security Section -->
-        <section class="py-16 bg-white">
+        <section class="py-16 bg-gray-50">
             <div class="container mx-auto px-6">
                 <div class="flex flex-col md:flex-row items-center">
                     <div class="md:w-1/2 mb-8 md:mb-0 animate-on-scroll">
@@ -274,7 +373,7 @@
         </section>
 
         <!-- Comparison Table -->
-        <section class="py-16 bg-gray-50">
+        <section class="py-16 bg-white">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl font-bold text-center text-dark mb-12 animate-on-scroll">Чем лучше других?</h2>
                 <div class="overflow-x-auto animate-on-scroll">
@@ -319,11 +418,11 @@
         </section>
 
         <!-- Testimonials -->
-        <section id="testimonials" class="py-16 bg-white">
+        <section id="testimonials" class="py-16 bg-gray-50">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl font-bold text-center text-dark mb-12 animate-on-scroll">Отзывы первых пользователей</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm animate-on-scroll">
+                    <div class="bg-white p-6 rounded-xl shadow-sm animate-on-scroll">
                         <div class="flex items-center mb-4">
                             <div class="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center mr-3">
                                 <i class="fas fa-user"></i>
@@ -341,7 +440,7 @@
                         </div>
                         <p class="text-gray-600">"Теперь я успеваю отвечать всем без нервов. Шаблоны реально спасают. Очень удобно и быстро!"</p>
                     </div>
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm animate-on-scroll">
+                    <div class="bg-white p-6 rounded-xl shadow-sm animate-on-scroll">
                         <div class="flex items-center mb-4">
                             <div class="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center mr-3">
                                 <i class="fas fa-user"></i>
@@ -359,7 +458,7 @@
                         </div>
                         <p class="text-gray-600">"Теперь не нужно вручную отвечать на типовые вопросы. Экономит кучу времени в день!"</p>
                     </div>
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm animate-on-scroll">
+                    <div class="bg-white p-6 rounded-xl shadow-sm animate-on-scroll">
                         <div class="flex items-center mb-4">
                             <div class="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center mr-3">
                                 <i class="fas fa-user"></i>
@@ -430,7 +529,17 @@
                 <div class="mb-8 md:mb-0">
                     <h3 class="text-2xl font-bold mb-4">Smart Keyboard AI</h3>
                     <p class="mb-4">Умная клавиатура для бизнеса и жизни</p>
-                    <p class="text-gray-400">Проект реализуется при поддержке СПбГМТУ</p>
+                    <div class="flex items-center mb-4">
+                        <div class="fund-logo w-10 h-10 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-handshake text-white"></i>
+                        </div>
+                        <div class="platform-logo w-10 h-10 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-university text-white"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Проект реализован при поддержке Фонда содействия инновациям в рамках программы «Студенческий стартап» мероприятия «Платформа университетского технологического предпринимательства» федерального проекта «Технологии»</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-8 md:mb-0">
                     <h4 class="text-lg font-bold mb-4">Контакты</h4>
