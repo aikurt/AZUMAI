@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <base target="_self">
+	<meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://forms.yandex.ru; child-src 'self' https://forms.yandex.ru;">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Keyboard AI — Умная клавиатура для бизнеса и жизни | Проект реализован при поддержке Фонда содействия инновациям в рамках программы «Студенческий стартап» мероприятия «Платформа университетского технологического предпринимательства» федерального проекта «Технологии» </title>
+    <meta name="description" content="Автоматизация ответов, экономия до 70% времени на переписке для самозанятых, малого и среднего бизнеса">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+<meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://forms.yandex.ru; child-src 'self' https://forms.yandex.ru;">
+
+</head>
+    
+<body class="bg-neutral-50 text-neutral-800">
+    <!-- Government Support Banner -->
+    <div class="bg-gradient-to-r from-blue-800 to-blue-900 text-white py-3">
+        <div class="container-narrow px-4">
+            <div class="flex flex-col md:flex-row items-center justify-center text-center md:text-left">
+                <div class="flex items-center mb-2 md:mb-0 md:mr-6">
+                    <div class="bg-white/10 rounded-full p-2 mr-3">
+                        <i class="fas fa-handshake text-white text-sm"></i>
+                    </div>
+                    <span class="text-sm font-medium">Проект реализован при поддержке</span>
+                </div>
+                <div class="text-sm">
+                    Фонда содействия инновациям в рамках программы «Студенческий стартап» мероприятия «Платформа университетского технологического предпринимательства» федерального проекта «Технологии»
+                </div>
+            </div>
+        </div>
+    </div>
+<body class="font-sans bg-gray-50 text-gray-800 antialiased">
+    <!-- Modal for early access message -->
+    <div id="earlyAccessModal" class="fixed inset-0 z-50 hidden modal-overlay">
+        <div class="flex items-center justify-center min-h-screen px-4">
+            <div id="modalContent" class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full transform transition-all duration-300 scale-95 opacity-0">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-keyboard text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Smart Keyboard AI</h3>
+                    <p id="modalText" class="text-gray-600 mb-6">
+                        Программа Smart Keyboard AI пока в разработке (MVP). Приглашаем оставить заявку на ранний доступ через форму обратной связи.
+                    </p>
+                    <div class="flex space-x-4">
+                        <button onclick="closeEarlyAccessModal()" class="flex-1 px-4 py-3 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors">
+                            Закрыть
+                        </button>
+                        <button onclick="scrollToContactForm()" class="flex-1 px-4 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors">
+                            К форме
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-white shadow-sm">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <!-- ВСТАВИТЬ ЛОГОТИП ВРУЧНУЮ -->
+                    <div class="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-keyboard text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-900">Smart Keyboard AI</h1>
+                        <p class="text-xs text-gray-500">Умная клавиатура для бизнеса</p>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#hero" class="text-gray-700 hover:text-primary-600 font-medium">Главная</a>
+                    <a href="#features" class="text-gray-700 hover:text-primary-600 font-medium">Возможности</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-primary-600 font-medium">Тарифы</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-primary-600 font-medium">Отзывы</a>
+                    <a href="#contact" class="text-gray-700 hover:text-primary-600 font-medium">Контакты</a>
+                </div>
+                
+                <button onclick="scrollToContactForm()" class="px-6 py-2 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors">
+                    Получить ранний доступ
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="gradient-bg text-white">
+        <div class="container mx-auto px-4 py-16 md:py-24">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="mb-8">
+                    <span class="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
+                        Компания АЗУМАИ представляет
+                    </span>
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    Умная клавиатура для бизнеса и жизни
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
+                    Автоматизация ответов, экономия до 70% времени на переписке для самозанятых, малого и среднего бизнеса
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                    <button onclick="showEarlyAccessMessage()" class="px-8 py-4 bg-white text-primary-600 font-bold rounded-lg hover:bg-gray-100 transition-colors text-lg">
+                        Начать бесплатно
+                    </button>
+                    <button onclick="scrollToSection('features')" class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition-colors text-lg">
+                        Узнать больше
+                    </button>
+                </div>
+                
+                <!-- ВСТАВИТЬ РЕФЕРЕНСЫ MVP ВРУЧНУЮ -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold mb-2">70%</div>
+                            <div class="text-white/80">Экономия времени</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold mb-2">100%</div>
+                            <div class="text-white/80">Локальная обработка</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold mb-2">0</div>
+                            <div class="text-white/80">Данные в облако</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Возможности Smart Keyboard AI</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Инновационные функции для эффективной коммуникации</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-robot text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">AI Автозаполнение</h3>
+                    <p class="text-gray-600 mb-4">Умное предсказание текста на основе контекста переписки</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Адаптация под стиль общения</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Поддержка нескольких языков</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Smart Fill</h3>
+                    <p class="text-gray-600 mb-4">Подсветка автозаполненных полей для прозрачности работы ИИ</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Визуальное выделение предложений</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Легкое редактирование</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-sliders-h text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Tone Check</h3>
+                    <p class="text-gray-600 mb-4">Выбор стиля общения: формальный, дружеский, профессиональный</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Настройка тональности</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Адаптация под аудиторию</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Полная приватность</h3>
+                    <p class="text-gray-600 mb-4">Zero Data Policy - ваши данные остаются на устройстве</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>On-Device LLM (Pro версия)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Работа без интернета</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Аналитика эффективности</h3>
+                    <p class="text-gray-600 mb-4">Отслеживание экономии времени и продуктивности</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Статистика по экономии</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Рекомендации по оптимизации</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-sync-alt text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Интеграции</h3>
+                    <p class="text-gray-600 mb-4">Работа во всех популярных приложениях и мессенджерах</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Telegram, WhatsApp</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Email клиенты</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Социальные сети</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Тарифные планы</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Выберите подходящий вариант для вашего бизнеса</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Free Plan -->
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Free версия</h3>
+                        <p class="text-gray-600">Базовая функциональность</p>
+                        <div class="mt-4">
+                            <span class="text-4xl font-bold text-gray-900">Бесплатно</span>
+                            <span class="text-gray-500">/ навсегда</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h4 class="font-bold text-gray-900 mb-4">Особенности:</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-server text-blue-500 mt-1 mr-3"></i>
+                                <span><strong>Обработка данных:</strong> Серверная (Server-Side LLM)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-wifi text-blue-500 mt-1 mr-3"></i>
+                                <span><strong>Требования:</strong> Интернет-соединение обязательно</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-user-secret text-blue-500 mt-1 mr-3"></i>
+                                <span><strong>Приватность:</strong> Данные псевдонимизируются</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-lock text-blue-500 mt-1 mr-3"></i>
+                                <span><strong>Безопасность:</strong> Защищенные каналы (TLS/SSL)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                                <span>Базовый AI Автозаполнение</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                                <span>Smart Fill (подсветка)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                                <span>Tone Check (3 стиля)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <button onclick="showEarlyAccessMessage()" class="w-full py-4 bg-primary-600 text-white font-bold rounded-lg hover:bg-primary-700 transition-colors">
+                        Начать бесплатно
+                    </button>
+                </div>
+                
+                <!-- Pro Plan -->
+                <div class="bg-gradient-to-br from-primary-600 to-primary-800 text-white rounded-2xl shadow-xl p-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-bl-lg">
+                        <span class="font-bold">Рекомендуем</span>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold mb-2">Pro версия</h3>
+                        <p class="text-white/90">Максимальная приватность и возможности</p>
+                        <div class="mt-4">
+                            <span class="text-4xl font-bold">1990 ₽</span>
+                            <span class="text-white/80">/ месяц</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h4 class="font-bold mb-4">Особенности:</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-laptop-house text-white mt-1 mr-3"></i>
+                                <span><strong>Обработка данных:</strong> 100% Локальная (On-Device LLM)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-wifi-slash text-white mt-1 mr-3"></i>
+                                <span><strong>Требования:</strong> Работает без интернета</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-shield-alt text-white mt-1 mr-3"></i>
+                                <span><strong>Приватность:</strong> Zero Data Policy</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-bolt text-white mt-1 mr-3"></i>
+                                <span><strong>Производительность:</strong> Ускоренная обработка</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-white mt-1 mr-3"></i>
+                                <span>Расширенный AI Автозаполнение</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-white mt-1 mr-3"></i>
+                                <span>Smart Fill + продвинутые настройки</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-white mt-1 mr-3"></i>
+                                <span>Tone Check (10+ стилей)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-white mt-1 mr-3"></i>
+                                <span>Расширенная аналитика</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-white mt-1 mr-3"></i>
+                                <span>Приоритетная поддержка</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <button onclick="showEarlyAccessMessage()" class="w-full py-4 bg-white text-primary-600 font-bold rounded-lg hover:bg-gray-100 transition-colors">
+                        Купить Pro версию
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Competitors Comparison -->
+            <div class="mt-16 bg-white rounded-2xl shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Сравнение с конкурентами</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b-2 border-gray-200">
+                                <th class="text-left py-4 px-4 font-bold text-gray-900">Функция</th>
+                                <th class="text-center py-4 px-4 font-bold text-gray-900">Smart Keyboard AI Pro</th>
+                                <th class="text-center py-4 px-4 font-bold text-gray-900">Конкуренты</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-4 px-4 font-medium">Оффлайн-режим</td>
+                                <td class="text-center py-4 px-4">
+                                    <i class="fas fa-check text-green-500"></i>
+                                    <span class="ml-2 font-bold">100% локальная обработка</span>
+                                </td>
+                                <td class="text-center py-4 px-4">
+                                    <i class="fas fa-times text-red-500"></i>
+                                    <span class="ml-2">Требуется интернет</span>
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-4 px-4 font-medium">Приватность данных</td>
+                                <td class="text-center py-4 px-4">
+                                    <i class="fas fa-check text-green-500"></i>
+                                    <span class="ml-2 font-bold">Zero Data Policy</span>
+                                </td>
+                                <td class="text-center py-4 px-4">
+                                    <i class="fas fa-times text-red-500"></i>
+                                    <span class="ml-2">Данные в облаке</span>
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-4 px-4 font-medium">On-Device LLM</td>
+                                <td class="text-center py-4 px-4">
+                                    <i class="fas fa-check text-green-500"></i>
+                                    <span class="ml-2 font-bold">Полная локальность</span>
+                                </td>
+                                <td class="text-center py-4 px-4">
+                                    <i class="fas fa-times text-red-500"></i>
+                                    <span class="ml-2">Серверная обработка</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-4 font-medium">Безопасность</td>
+                                <td class="text-center py-4 px-4">
+                                    <i class="fas fa-check text-green-500"></i>
+                                    <span class="ml-2 font-bold">Данные никогда не покидают устройство</span>
+                                </td>
+                                <td class="text-center py-4 px-4">
+                                    <i class="fas fa-exclamation-triangle text-yellow-500"></i>
+                                    <span class="ml-2">Риск утечек данных</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Отзывы клиентов</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Что говорят предприниматели об экономии времени</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user-tie text-primary-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Алексей Петров</h4>
+                            <p class="text-gray-500 text-sm">Владелец интернет-магазина</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Smart Keyboard AI сократил время на ответы клиентам на 65%. Раньше тратил 3-4 часа в день, теперь меньше часа. Инвестиция окупилась за неделю."</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user-md text-primary-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Мария Смирнова</h4>
+                            <p class="text-gray-500 text-sm">Частный психолог</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Как самозанятый специалист, ценю приватность. Pro версия с локальной обработкой - именно то, что нужно. Данные клиентов в безопасности, а я экономлю время."</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-chart-line text-primary-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Дмитрий Иванов</h4>
+                            <p class="text-gray-500 text-sm">Руководитель отдела продаж</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Внедрили для всего отдела. Экономия времени колоссальная. Особенно ценю функцию Tone Check - все ответы выдержаны в едином профессиональном стиле."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <!-- Contact Section -->
+<section id="contact" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Оставьте заявку на ранний доступ</h2>
+                <p class="text-gray-600">Присоединяйтесь к первым пользователям Smart Keyboard AI</p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Форма обратной связи</h3>
+                    <p class="text-gray-600 mb-6">
+                        Заполните форму ниже, чтобы получить доступ к бета-тестированию и специальные условия при запуске
+                    </p>
+                </div>
+
+                <!-- ВСТАВКА РАБОЧЕЙ ЯНДЕКС-ФОРМЫ -->
+
+
+                <div class="bg-gray-100 rounded-xl p-8">
+                    <script src="https://forms.yandex.ru/_static/embed.js"></script>
+                    <iframe
+                        src="https://forms.yandex.ru/cloud/6939d5ac068ff0f8d5b7e191?iframe=1"
+                        frameborder="0"
+                        name="ya-form-6939d5ac068ff0f8d5b7e191"
+                        width="100%"
+                        height="550"
+                        style="border-radius: 12px; background: white;">
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <!-- ВСТАВИТЬ ЛОГОТИП ВРУЧНУЮ -->
+                        <div class="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-keyboard text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Smart Keyboard AI</h3>
+                            <p class="text-gray-400 text-sm">Умная клавиатура для бизнеса</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">
+                        Проект реализован при поддержке Фонда содействия инновациям в рамках программы «Студенческий стартап» федерального проекта «Технологии».
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Продукт</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition-colors">Возможности</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-white transition-colors">Тарифы</a></li>
+                        <li><a href="#testimonials" class="text-gray-400 hover:text-white transition-colors">Отзывы</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Компания</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">О нас</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Блог</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Вакансии</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Партнеры</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Правовая информация</h4>
+                    <div class="text-gray-400 text-sm space-y-2">
+                        <p><strong>ООО «АЗУМАИ»</strong></p>
+                        <p>ОГРН 1253900010770</p>
+                        <p>ИНН 3900046300</p>
+                        <p>236044, г. Калининград, ул. У.Громовой, д. 88, кв. 136</p>
+						<p>Почта: ikurt.work@gmail.com</p>
+						<p>Телефон: +7(909)778-32-73</p>
+                        <p class="mt-4">
+                            <a href="#" class="text-primary-400 hover:text-primary-300 transition-colors">Политика конфиденциальности</a>
+                        </p>
+                        <p>
+                            <a href="#" class="text-primary-400 hover:text-primary-300 transition-colors">Пользовательское соглашение</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>© 2024 Smart Keyboard AI. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                window.scrollTo({
+                    top: section.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        }
+        
+        // Scroll to contact form
+        function scrollToContactForm() {
+            scrollToSection('contact');
+        }
+        
+        // Show early access message
+        function showEarlyAccessMessage() {
+            const modal = document.getElementById('earlyAccessModal');
+            const modalText = document.getElementById('modalText');
+            
+            modalText.innerHTML = 'Программа Smart Keyboard AI пока в разработке (MVP). Приглашаем оставить заявку на ранний доступ через <a href="#contact" onclick="closeEarlyAccessModal(); scrollToContactForm(); return false;" class="text-primary-600 font-medium underline">форму обратной связи</a>.';
+            
+            modal.classList.remove('hidden');
+            
+            setTimeout(() => {
+                const modalContent = document.getElementById('modalContent');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.remove('opacity-0');
+            }, 10);
+        }
+        
+        // Close modal
+        function closeEarlyAccessModal() {
+            const modal = document.getElementById('earlyAccessModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.classList.add('scale-95');
+            modalContent.classList.add('opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+        
+        // Initialize event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId !== '#') {
+                        scrollToSection(targetId.substring(1));
+                    }
+                });
+            });
+            
+            // Close modal when clicking outside
+            document.getElementById('earlyAccessModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeEarlyAccessModal();
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeEarlyAccessModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
