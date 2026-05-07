@@ -2,8 +2,6 @@
 <html lang="ru">
 <head>
     <base target="_self">
-	<meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://forms.yandex.ru; child-src 'self' https://forms.yandex.ru;">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Keyboard AI — Умная клавиатура для бизнеса и жизни | Проект реализован при поддержке Фонда содействия инновациям в рамках программы «Студенческий стартап» мероприятия «Платформа университетского технологического предпринимательства» федерального проекта «Технологии» </title>
@@ -71,11 +69,9 @@
             background-color: rgba(0, 0, 0, 0.5);
         }
     </style>
-<meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://forms.yandex.ru; child-src 'self' https://forms.yandex.ru;">
-
 </head>
-    
-<body class="bg-neutral-50 text-neutral-800">
+
+<body class="font-sans bg-gray-50 text-gray-800 antialiased">
     <!-- Government Support Banner -->
     <div class="bg-gradient-to-r from-blue-800 to-blue-900 text-white py-3">
         <div class="container-narrow px-4">
@@ -92,7 +88,7 @@
             </div>
         </div>
     </div>
-<body class="font-sans bg-gray-50 text-gray-800 antialiased">
+
     <!-- Modal for early access message -->
     <div id="earlyAccessModal" class="fixed inset-0 z-50 hidden modal-overlay">
         <div class="flex items-center justify-center min-h-screen px-4">
@@ -103,7 +99,7 @@
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-4">Smart Keyboard AI</h3>
                     <p id="modalText" class="text-gray-600 mb-6">
-                        Программа Smart Keyboard AI пока в разработке (MVP). Приглашаем оставить заявку на ранний доступ через форму обратной связи.
+                        Pro-версия Smart Keyboard AI скоро будет доступна. Оставьте заявку через форму обратной связи — свяжемся с вами при запуске продаж.
                     </p>
                     <div class="flex space-x-4">
                         <button onclick="closeEarlyAccessModal()" class="flex-1 px-4 py-3 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors">
@@ -138,6 +134,10 @@
                     <a href="#features" class="text-gray-700 hover:text-primary-600 font-medium">Возможности</a>
                     <a href="#pricing" class="text-gray-700 hover:text-primary-600 font-medium">Тарифы</a>
                     <a href="#testimonials" class="text-gray-700 hover:text-primary-600 font-medium">Отзывы</a>
+                    <a href="https://azumai.ru" target="_blank" rel="noopener" class="text-gray-700 hover:text-primary-600 font-medium inline-flex items-center">
+                        Веб-кабинет
+                        <i class="fas fa-external-link-alt text-xs ml-1.5"></i>
+                    </a>
                     <a href="#contact" class="text-gray-700 hover:text-primary-600 font-medium">Контакты</a>
                 </div>
                 
@@ -167,12 +167,14 @@
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                    <button onclick="showEarlyAccessMessage()" class="px-8 py-4 bg-white text-primary-600 font-bold rounded-lg hover:bg-gray-100 transition-colors text-lg">
-                        Начать бесплатно
-                    </button>
-                    <button onclick="scrollToSection('features')" class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition-colors text-lg">
-                        Узнать больше
-                    </button>
+                    <a href="smart-keyboard-ai.apk" download="Smart Keyboard AI.apk" class="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-600 font-bold rounded-lg hover:bg-gray-100 transition-colors text-lg">
+                        <i class="fab fa-android mr-3"></i>
+                        Скачать APK
+                    </a>
+                    <a href="https://azumai.ru" target="_blank" rel="noopener" class="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition-colors text-lg">
+                        <i class="fas fa-external-link-alt mr-3"></i>
+                        Веб-кабинет
+                    </a>
                 </div>
                 
                 <!-- ВСТАВИТЬ РЕФЕРЕНСЫ MVP ВРУЧНУЮ -->
@@ -374,11 +376,12 @@
                         </ul>
                     </div>
                     
-                    <button onclick="showEarlyAccessMessage()" class="w-full py-4 bg-primary-600 text-white font-bold rounded-lg hover:bg-primary-700 transition-colors">
-                        Начать бесплатно
-                    </button>
+                    <a href="smart-keyboard-ai.apk" download="Smart Keyboard AI.apk" class="block w-full py-4 bg-primary-600 text-white font-bold rounded-lg hover:bg-primary-700 transition-colors text-center">
+                        <i class="fab fa-android mr-2"></i>
+                        Скачать APK
+                    </a>
                 </div>
-                
+
                 <!-- Pro Plan -->
                 <div class="bg-gradient-to-br from-primary-600 to-primary-800 text-white rounded-2xl shadow-xl p-8 relative overflow-hidden">
                     <div class="absolute top-0 right-0 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-bl-lg">
@@ -658,7 +661,7 @@
             </div>
             
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-                <p>© 2024 Smart Keyboard AI. Все права защищены.</p>
+                <p>© 2024–2026 Smart Keyboard AI. Все права защищены.</p>
             </div>
         </div>
     </footer>
@@ -685,7 +688,7 @@
             const modal = document.getElementById('earlyAccessModal');
             const modalText = document.getElementById('modalText');
             
-            modalText.innerHTML = 'Программа Smart Keyboard AI пока в разработке (MVP). Приглашаем оставить заявку на ранний доступ через <a href="#contact" onclick="closeEarlyAccessModal(); scrollToContactForm(); return false;" class="text-primary-600 font-medium underline">форму обратной связи</a>.';
+            modalText.innerHTML = 'Pro-версия Smart Keyboard AI скоро будет доступна. Оставьте заявку через <a href="#contact" onclick="closeEarlyAccessModal(); scrollToContactForm(); return false;" class="text-primary-600 font-medium underline">форму обратной связи</a> — свяжемся при запуске продаж.';
             
             modal.classList.remove('hidden');
             
